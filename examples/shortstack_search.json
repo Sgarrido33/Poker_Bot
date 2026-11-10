@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "table_id": "diagnosis",
+  "hand_id": "defense",
+  "hero_id": "BB",
+  "button_index": 0,
+  "players": [
+    {
+      "player_id": "BTN",
+      "stack": 600,
+      "street_bet": 200,
+      "contribution": 200,
+      "folded": false
+    },
+    {
+      "player_id": "SB",
+      "stack": 750,
+      "street_bet": 50,
+      "contribution": 50,
+      "folded": true
+    },
+    {
+      "player_id": "BB",
+      "stack": 700,
+      "street_bet": 100,
+      "contribution": 100,
+      "folded": false
+    }
+  ],
+  "hole_cards": [
+    "Qs",
+    "7h"
+  ],
+  "board": [],
+  "big_blind": 100,
+  "legal": {
+    "can_check": false,
+    "can_fold": true,
+    "call_amount": 100,
+    "min_raise_to": 300,
+    "max_raise_to": 800
+  },
+  "history": [
+    {
+      "event_id": "0",
+      "player_id": "BTN",
+      "street": "preflop",
+      "kind": "raise_to",
+      "amount": 200,
+      "facing_bet": true
+    },
+    {
+      "event_id": "1",
+      "player_id": "SB",
+      "street": "preflop",
+      "kind": "fold",
+      "amount": 0,
+      "facing_bet": true
+    }
+  ]
+}

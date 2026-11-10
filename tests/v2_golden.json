@@ -1,0 +1,442 @@
+[
+  {
+    "players": 2,
+    "hand": 0,
+    "payoffs": {
+      "hero": 50,
+      "1": -50
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "1",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 2,
+    "hand": 1,
+    "payoffs": {
+      "hero": 250,
+      "1": -250
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "1",
+        "street": "preflop",
+        "kind": "raise_to",
+        "amount": 250,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "call",
+        "amount": 150,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "hero",
+        "street": "flop",
+        "kind": "check",
+        "amount": 0,
+        "facing_bet": false
+      },
+      {
+        "event_id": "3",
+        "player_id": "1",
+        "street": "flop",
+        "kind": "check",
+        "amount": 0,
+        "facing_bet": false
+      },
+      {
+        "event_id": "4",
+        "player_id": "hero",
+        "street": "turn",
+        "kind": "check",
+        "amount": 0,
+        "facing_bet": false
+      },
+      {
+        "event_id": "5",
+        "player_id": "1",
+        "street": "turn",
+        "kind": "check",
+        "amount": 0,
+        "facing_bet": false
+      },
+      {
+        "event_id": "6",
+        "player_id": "hero",
+        "street": "river",
+        "kind": "check",
+        "amount": 0,
+        "facing_bet": false
+      },
+      {
+        "event_id": "7",
+        "player_id": "1",
+        "street": "river",
+        "kind": "check",
+        "amount": 0,
+        "facing_bet": false
+      }
+    ]
+  },
+  {
+    "players": 3,
+    "hand": 0,
+    "payoffs": {
+      "hero": -50,
+      "1": -100,
+      "2": 150
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "raise_to",
+        "amount": 250,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "1",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 3,
+    "hand": 1,
+    "payoffs": {
+      "hero": -50,
+      "1": 50,
+      "2": 0
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 4,
+    "hand": 0,
+    "payoffs": {
+      "hero": -50,
+      "1": 50,
+      "2": 0,
+      "3": 0
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "3",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 4,
+    "hand": 1,
+    "payoffs": {
+      "hero": -50,
+      "1": 50,
+      "2": 0,
+      "3": 0
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "3",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 5,
+    "hand": 0,
+    "payoffs": {
+      "hero": -50,
+      "1": -100,
+      "2": 0,
+      "3": 0,
+      "4": 150
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "3",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "4",
+        "street": "preflop",
+        "kind": "raise_to",
+        "amount": 250,
+        "facing_bet": true
+      },
+      {
+        "event_id": "3",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "4",
+        "player_id": "1",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 5,
+    "hand": 1,
+    "payoffs": {
+      "hero": -50,
+      "1": 50,
+      "2": 0,
+      "3": 0,
+      "4": 0
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "3",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "4",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "3",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 6,
+    "hand": 0,
+    "payoffs": {
+      "hero": -50,
+      "1": -100,
+      "2": 0,
+      "3": 0,
+      "4": 150,
+      "5": 0
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "3",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "4",
+        "street": "preflop",
+        "kind": "raise_to",
+        "amount": 250,
+        "facing_bet": true
+      },
+      {
+        "event_id": "3",
+        "player_id": "5",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "4",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "5",
+        "player_id": "1",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  },
+  {
+    "players": 6,
+    "hand": 1,
+    "payoffs": {
+      "hero": -50,
+      "1": 50,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0
+    },
+    "history": [
+      {
+        "event_id": "0",
+        "player_id": "2",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "1",
+        "player_id": "3",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "2",
+        "player_id": "4",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "3",
+        "player_id": "5",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      },
+      {
+        "event_id": "4",
+        "player_id": "hero",
+        "street": "preflop",
+        "kind": "fold",
+        "amount": 0,
+        "facing_bet": true
+      }
+    ]
+  }
+]

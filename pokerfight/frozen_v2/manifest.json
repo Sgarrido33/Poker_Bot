@@ -1,0 +1,11 @@
+{
+  "snapshot": "v2 before shortstack work 2026-10-28",
+  "files": {
+    "cards.py": "66fea0a2834ac99992c013e8764fc9aa28bd5509903c15b69ba18a9836985c4e",
+    "domain.py": "825085e3dc66cb827fb32b1718e70447d874b2d7968c036e2327c72c30b00432",
+    "equity.py": "44f57989b75d1c68dcbb7ecbc57c2838f2f31ecc59f71b4cb47c9c7eab512ca0",
+    "opponents.py": "027cd05dd96965dc63244eaaa98a03575f3c24bb5288ca0153d2684f48a21873",
+    "preflop.py": "55da66e90b29f55eba49fc6b3f4fce4ee56fdd1f982aba8580cf4842d57bb221",
+    "strategy.py": "833ef1a633be8c6b7ae12b9f96fd387b40297ad5b77e8b3863c6f013f7c4feb7"
+  }
+}

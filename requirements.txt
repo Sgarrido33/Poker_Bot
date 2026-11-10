@@ -1,0 +1,4 @@
+eval7==0.1.11
+pokerkit==0.7.7
+pyparsing==3.3.3
+future==1.0.0

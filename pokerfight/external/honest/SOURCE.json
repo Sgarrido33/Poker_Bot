@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/ishikota/PyPokerEngine",
+  "commit": "a52a048a15da276005eca4acae96fb6eeb4dc034",
+  "path": "examples/players/honest_player.py",
+  "license": "MIT (upstream LICENSE.md; Copyright 2016 ishikota)",
+  "runtime": "Adapted independently to PokerFight Observation and Eval7; upstream bot is not imported.",
+  "sha256": {
+    "honest_player.py": "156FBA1DC68D4208B48F9704D4FFCFCD21E4FAAAA00D14F0AC2DB2721E32EE43",
+    "LICENSE.md": "2BF5FDB299F17836B772B266F6EB9D142C67D157C94DA9BC365FBF30F5FCF5FE"
+  }
+}

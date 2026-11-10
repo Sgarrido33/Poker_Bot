@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/advitrocks9/fullhouse-bot",
+  "commit": "e504793d480b1b975f25258d25939b45c6dbd5a4",
+  "retrieved_local_date": "2026-10-28",
+  "declared_license": "MIT; engine_vendored explicitly excluded; no separate weight license located",
+  "original_files": {
+    "bot/bot.py": "f721b16e0cab72d0c40fae2e94d1ec655a94025fc20addfc689c718fb8f10845",
+    "bot/features.py": "b43361365ed911f358b3588f0c487614029158bf1420c5ffec8260bd427475c8",
+    "bot/deep_cfr_lookup.py": "9d288877f90d8c7962d7041e9cc2e6fb908009c8884a3d7863c4de1a5e9a4f20",
+    "data/deep_cfr_model.npz": "1102326b68da95564de147106612df71cb891b42f0726ba0212d3b9a5bcae295",
+    "data/preflop_equity.npz": "6b3b74778854fcebcd3179753c0252392e5f4118e6b623375c98fafa372863b3",
+    "LICENSE": "8a2daa759da5e2bc87dfdd8f3a02fee6f18b38ccced523022a31c36e1b0512c4"
+  },
+  "runtime_files": {
+    "bot.py": "2fd23c3610777a12966c778454c5621221c6164ef2ada3c65252e258ad855989",
+    "features.py": "4a0861ee93c7d3c512d3c7341cc2c6bdd1df503efe3b39928bb3d661d7aad86e",
+    "deep_cfr_lookup.py": "9d288877f90d8c7962d7041e9cc2e6fb908009c8884a3d7863c4de1a5e9a4f20",
+    "data/deep_cfr_model.npz": "1102326b68da95564de147106612df71cb891b42f0726ba0212d3b9a5bcae295",
+    "data/preflop_equity.npz": "6b3b74778854fcebcd3179753c0252392e5f4118e6b623375c98fafa372863b3",
+    "LICENSE": "8a2daa759da5e2bc87dfdd8f3a02fee6f18b38ccced523022a31c36e1b0512c4"
+  },
+  "changes": [
+    "bot.py: remove sys.path insertion; use relative imports",
+    "bot.py and features.py: ignore BOT_DATA_DIR and use bundled fixed data only",
+    "No changes to feature encoder, model weights, action menu or short-stack charts",
+    "Adapter bypasses upstream broad exception fallback so errors fail evaluation",
+    "Adapter supplies per-instance sampling RNG and authoritative legal-action translation"
+  ]
+}

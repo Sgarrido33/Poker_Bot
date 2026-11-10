@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "table_id": "mesa-local-1",
+  "hand_id": "mano-1",
+  "hero_id": "hero",
+  "button_index": 4,
+  "players": [
+    {"player_id": "p0", "stack": 9950, "street_bet": 50, "contribution": 50},
+    {"player_id": "p1", "stack": 9900, "street_bet": 100, "contribution": 100},
+    {"player_id": "hero", "stack": 10000, "street_bet": 0, "contribution": 0},
+    {"player_id": "p3", "stack": 10000, "street_bet": 0, "contribution": 0},
+    {"player_id": "p4", "stack": 10000, "street_bet": 0, "contribution": 0}
+  ],
+  "hole_cards": ["As", "Ah"],
+  "board": [],
+  "big_blind": 100,
+  "legal": {"can_check": false, "can_fold": true, "call_amount": 100, "min_raise_to": 200, "max_raise_to": 10000},
+  "history": []
+}

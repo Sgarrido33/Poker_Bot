@@ -1,0 +1,15 @@
+# Entornos y temporales
+.venv/
+.tmp/
+.tools/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Artefactos de investigación y resultados (binarios, checkpoints, logs de sesión)
+research/
+results/
