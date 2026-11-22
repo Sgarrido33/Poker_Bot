@@ -21,7 +21,8 @@ from .supervision import SupervisedPolicy
 VERSION = "1.0.0"
 MAX_LINE = 1024 * 1024
 SATURATED = "demasiadas conexiones esperando el saludo"
-PROFILES = {"v2": (BotConfig(), 3000), "v4rb": (BotConfig(1024, 3500), 4000)}
+# Versión entregada: v2 (4 000 muestras, 1 600 ms de cálculo, corte local a 3 000 ms).
+PROFILES = {"v2": (BotConfig(), 3000)}
 
 
 def card(value: dict) -> str:
@@ -184,9 +185,21 @@ class Session:
             hand_id = state["id_mano"]
             if self.logged_hand != hand_id:
                 self.logged_hand, self.logged_actions = hand_id, 0
+            new_history = len(history) > self.logged_actions
             for index in range(self.logged_actions, len(history)):
                 self.log("public_action", hand=hand_id, index=index, action=history[index])
             self.logged_actions = max(self.logged_actions, len(history))
+            # Keep learning after hero folds. The local arena supplies the
+            # complete public history; official state broadcasts carry it too.
+            observer = getattr(self.bot, "observe", None)
+            if new_history and self.hand and self.hand.id == hand_id and callable(observer):
+                try:
+                    table_id = hand_id.rpartition("-mano-")[0] or hand_id
+                    if not observer(table_id, hand_id, self.hand.history(state)):
+                        self.log("model_observation_error", hand=hand_id, reason="worker_rejected_history")
+                except Exception as error:
+                    self.log("model_observation_error", hand=hand_id,
+                             reason=f"{type(error).__name__}:{error}")
 
     def respond(self, connection, message, started):
         state = message["estado"]
@@ -357,7 +370,7 @@ def play(address: tuple[str, int], token: str, *, policy="v2", reconnect=True,
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Conecta v2 a una mesa PokerFight")
+    parser = argparse.ArgumentParser(description="Conecta una política a una mesa PokerFight")
     parser.add_argument("-addr", default="127.0.0.1:9000", help="Dirección host:puerto")
     parser.add_argument("-token", default=os.environ.get("POKERFIGHT_TOKEN"),
                         help="Credencial de la mesa, o variable POKERFIGHT_TOKEN")

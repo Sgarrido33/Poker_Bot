@@ -13,3 +13,34 @@ dist/
 # Artefactos de investigación y resultados (binarios, checkpoints, logs de sesión)
 research/
 results/
+
+# Solo local: desarrollo, evidencia y material del equipo (no forma parte de la entrega)
+CLAUDE.md
+ENTREGA.md
+docs/
+scripts/
+holi
+Poker Proyecto/
+Poker Proyecto.zip
+*.docx
+requirements-evaluation.txt
+pokerfight/*
+!pokerfight/__init__.py
+!pokerfight/arena.py
+!pokerfight/cards.py
+!pokerfight/controls.py
+!pokerfight/domain.py
+!pokerfight/equity.py
+!pokerfight/official.py
+!pokerfight/opponents.py
+!pokerfight/preflop.py
+!pokerfight/search_worker.py
+!pokerfight/strategy.py
+!pokerfight/supervision.py
+!pokerfight/frozen_v2/
+tests/*
+!tests/__init__.py
+!tests/test_official.py
+!tests/test_supervised_observation.py
+examples/*
+!examples/observation.json

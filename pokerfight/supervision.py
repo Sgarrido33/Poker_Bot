@@ -21,7 +21,7 @@ class SupervisedPolicy:
     def __init__(self, config, timeout_ms=4250, command=None, policy="v4"):
         if timeout_ms < 1:
             raise ValueError("timeout_ms debe ser positivo")
-        if policy not in ("v2", "v4", "v4rb", "v5", "v6", "v7"):
+        if policy not in ("v2", "v4", "v4rb", "v5", "v6", "v7", "v9"):
             raise ValueError("Política supervisada desconocida")
         self.config = config
         self.timeout_ms = timeout_ms
@@ -66,26 +66,7 @@ class SupervisedPolicy:
         if deadline <= started:
             return Decision(safe_action(obs), "supervisor:deadline", 0, True)
         try:
-            if self.process is None or self.process.poll() is not None:
-                self._start(deadline)
-            self.request_id += 1
-            request = {"request_id": self.request_id, "observation": asdict(obs)}
-            process, inbox = self.process, self.inbox
-            payload = json.dumps(request) + "\n"
-
-            def write():
-                try:
-                    process.stdin.write(payload)
-                    process.stdin.flush()
-                except Exception as error:
-                    inbox.put({"error": str(error)})
-
-            # A child that stops reading can block even the pipe write. Keep
-            # that operation outside the watchdog thread as well.
-            threading.Thread(target=write, daemon=True).start()
-            message = self.inbox.get(timeout=max(0, deadline - perf_counter()))
-            if message.get("request_id") != self.request_id:
-                raise RuntimeError(message.get("error", "worker_request_mismatch"))
+            message = self._request({"observation": asdict(obs)}, deadline)
             d = message["decision"]
             action = Action(**d["action"])
             if not action.is_legal(obs):
@@ -96,6 +77,47 @@ class SupervisedPolicy:
             self.close()
             return Decision(safe_action(obs), f"supervisor:{type(error).__name__}:{error}",
                             (perf_counter() - started) * 1000, True)
+
+    def _request(self, request, deadline):
+        if self.process is None or self.process.poll() is not None:
+            self._start(deadline)
+        self.request_id += 1
+        request = {**request, "request_id": self.request_id}
+        process, inbox = self.process, self.inbox
+        payload = json.dumps(request) + "\n"
+
+        def write():
+            try:
+                process.stdin.write(payload)
+                process.stdin.flush()
+            except Exception as error:
+                inbox.put({"error": str(error)})
+
+        # A child that stops reading can block even the pipe write. Keep
+        # that operation outside the watchdog thread as well.
+        threading.Thread(target=write, daemon=True).start()
+        message = inbox.get(timeout=max(0, deadline - perf_counter()))
+        if message.get("request_id") != self.request_id or "error" in message:
+            raise RuntimeError(message.get("error", "worker_request_mismatch"))
+        return message
+
+    def observe(self, table_id, hand_id, history):
+        """Deliver public actions even after hero folded, with a bounded ack.
+
+        Calls are serialized with decisions by the official client's event loop.
+        Failure drops the worker so a stale acknowledgment cannot reach a turn.
+        """
+        try:
+            message = self._request({"kind": "observe", "table_id": table_id,
+                                     "hand_id": hand_id,
+                                     "history": [asdict(event) for event in history]},
+                                    perf_counter() + 1)
+            if message.get("observed") is not True:
+                raise RuntimeError("worker_observation_missing_ack")
+            return True
+        except Exception:
+            self.close()
+            return False
 
     def close(self):
         process, self.process = self.process, None

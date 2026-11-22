@@ -19,6 +19,39 @@ def event(pid, street, kind, amount=None):
 
 
 class OfficialProtocolTests(unittest.TestCase):
+    def test_observes_public_actions_after_hero_fold_once(self):
+        state = {"id_mano": "mesa-2-mano-7", "ciega_grande": 100,
+                 "jugadores": [player("hero", 0, 2000, 0), player("sb", 1, 1950, 50),
+                               player("bb", 2, 1900, 100)]}
+        bot = Mock()
+        bot.observe.return_value = True
+        session = Session(bot, Mock())
+        session.hand = Hand({"estado": state,
+                             "cartas": [{"rango": 14, "palo": 3}, {"rango": 10, "palo": 2}]})
+        folded = {**state, "historial_acciones": [event("hero", "preflop", "fold")]}
+        session.observe(folded)
+        after_fold = {**state, "historial_acciones": [*folded["historial_acciones"],
+            event("sb", "preflop", "call"), event("bb", "preflop", "raise", 400)]}
+        session.observe(after_fold)
+        session.observe(after_fold)
+        self.assertEqual(bot.observe.call_count, 2)
+        table, hand, history = bot.observe.call_args.args
+        self.assertEqual((table, hand), ("mesa-2", "mesa-2-mano-7"))
+        self.assertEqual([(e.player_id, e.kind, e.amount) for e in history],
+                         [("hero", "fold", 0), ("sb", "call", 50), ("bb", "raise_to", 400)])
+
+    def test_model_observation_error_does_not_interrupt_session(self):
+        state = {"id_mano": "mesa-2-mano-7", "ciega_grande": 100,
+                 "jugadores": [player("hero", 0, 1950, 50), player("bb", 1, 1900, 100)]}
+        bot, log = Mock(), Mock()
+        bot.observe.side_effect = RuntimeError("worker unavailable")
+        session = Session(bot, log)
+        session.hand = Hand({"estado": state,
+                             "cartas": [{"rango": 14, "palo": 3}, {"rango": 10, "palo": 2}]})
+        session.observe({**state, "historial_acciones": [event("hero", "preflop", "call")]})
+        self.assertTrue(any(call.args[0] == "model_observation_error" for call in log.call_args_list))
+        self.assertEqual(session.stats["adapter_fallbacks"], 0)
+
     def test_does_not_send_a_response_after_its_deadline(self):
         session = Session(bot=None, log=Mock())
         connection = Mock()

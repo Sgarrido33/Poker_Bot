@@ -4,20 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pokerfight-bot"
-version = "0.1.0"
-description = "Bot inicial de Texas Hold'em No-Limit y evaluación local reproducible"
+version = "2.0.0"
+description = "Bot autónomo de Texas Hold'em No-Limit para PokerFight 2026 (política v2)"
 requires-python = ">=3.12"
 dependencies = ["eval7==0.1.11", "pokerkit==0.7.7"]
 
-[project.optional-dependencies]
-evaluation = ["numpy==2.5.4"]
-
-[project.scripts]
-pokerfight = "pokerfight.cli:main"
-
 [tool.setuptools.packages.find]
 include = ["pokerfight*"]
-
-[tool.setuptools.package-data]
-"pokerfight.external.fullhouse" = ["LICENSE", "SOURCE.json", "data/*.npz"]
-"pokerfight.external.honest" = ["LICENSE.md", "SOURCE.json"]

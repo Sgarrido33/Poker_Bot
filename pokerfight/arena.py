@@ -18,7 +18,7 @@ from .domain import Action, LegalActions, Observation, Player, PublicAction, saf
 from .preflop import OPEN_RANGES, PREMIUM, in_range
 from .strategy import BotConfig, Decision, LegacyPokerBot, PokerBot, raise_to
 
-POLICY_KINDS = ("v1", "v2", "v3", "v4", "v4rb", "v5", "v6", "v7", "v8", "v8b", "v8c", "v8d", "v8d_open", "v8d_reshove", "v8d_call", "v2mc", "v2_4000", "calling", "tight", "random", "tag", "lag", "pressure", "fullhouse", "honest", "noregrets")
+POLICY_KINDS = ("v1", "v2", "v3", "v4", "v4rb", "v5", "v6", "v7", "v8", "v8b", "v8c", "v8d", "v8d_open", "v8d_reshove", "v8d_call", "v9", "v2mc", "v2_4000", "calling", "tight", "random", "tag", "lag", "pressure", "fullhouse", "honest", "noregrets")
 
 
 def seed_for(*parts: object) -> int:
@@ -83,9 +83,12 @@ def make_policy(kind: str, config: BotConfig, seed: int) -> Policy:
     if kind in ("tag", "lag", "pressure"):
         from .rivals import RuleOpponent
         return RuleOpponent(kind, seed)
-    if kind in ("v1", "v2", "v3", "v4", "v4rb", "v5", "v6", "v7", "v8", "v8b", "v8c", "v8d", "v8d_open", "v8d_reshove", "v8d_call", "v2mc"):
+    if kind in ("v1", "v2", "v3", "v4", "v4rb", "v5", "v6", "v7", "v8", "v8b", "v8c", "v8d", "v8d_open", "v8d_reshove", "v8d_call", "v9", "v2mc"):
         settings = BotConfig(config.samples, config.budget_ms, seed,
                              config.confidence_cap, config.prior_observations)
+        if kind == "v9":
+            from .postflop_ranges import PostflopRangeBot
+            return PostflopRangeBot(settings)
         if kind == "v3":
             from .shortstack import ShortStackBot
             return ShortStackBot(settings)

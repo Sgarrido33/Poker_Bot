@@ -4,7 +4,7 @@ import json
 import sys
 
 from .arena import make_policy
-from .domain import Observation
+from .domain import Observation, PublicAction
 from .strategy import BotConfig
 
 
@@ -15,8 +15,13 @@ def main():
     for line in sys.stdin:
         try:
             request = json.loads(line)
-            obs = Observation.from_dict(request["observation"])
-            result = {"request_id": request["request_id"], "decision": bot.decide(obs).to_dict()}
+            if request.get("kind") == "observe":
+                history = tuple(PublicAction(**event) for event in request["history"])
+                bot.model.observe(request["table_id"], request["hand_id"], history)
+                result = {"request_id": request["request_id"], "observed": True}
+            else:
+                obs = Observation.from_dict(request["observation"])
+                result = {"request_id": request["request_id"], "decision": bot.decide(obs).to_dict()}
         except Exception as error:
             result = {"error": type(error).__name__ + ":" + str(error)}
         print(json.dumps(result, allow_nan=False), flush=True)
